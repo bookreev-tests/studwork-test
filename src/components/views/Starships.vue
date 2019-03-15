@@ -6,6 +6,7 @@
 
     <div class="content__search">
       <input class="content__search-input"
+             placeholder="Search by name"
              @input="changeSearch"
              v-model="search">
     </div>
@@ -14,7 +15,10 @@
       <div class="list__inner" v-if="list.length && !loading">
         <div class="list__item"
              v-for="item in list">
-          {{item.name}}
+          <router-link class="list__item-link"
+                       :to="toStarship(item)">
+            {{item.name}}
+          </router-link>
         </div>
       </div>
 
@@ -53,6 +57,7 @@
 
 <script>
 import axios from 'axios'
+import helpers from '@/helpers'
 
 export default {
   data () {
@@ -108,6 +113,15 @@ export default {
       this.getList()
     },
 
+    //* To Starship Page
+    toStarship (ship) {
+      let alias = helpers.encodeAlias(ship.name)
+      return {
+        name: 'starship',
+        params: {alias}
+      }
+    },
+
     //* Change Search String
     changeSearch () {
       if (this.search === this.$route.query.search) return false
@@ -133,8 +147,68 @@ export default {
     }
   },
 
-  mounted () {
+  created () {
     this.getList()
   }
 }
 </script>
+
+
+<style lang="stylus">
+  .list {
+    //
+
+    &__item {
+      //
+
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+
+      &-link {
+        color: deepskyblue;
+        cursor: pointer;
+        transition: 0.2s ease;
+        text-decoration: none;
+
+        &:hover {
+          color: lighten(deepskyblue, 40%);
+        }
+
+        &:active {
+          color: darken(deepskyblue, 10%);
+        }
+      }
+    }
+  }
+
+  .pag {
+    display: flex;
+    margin-top: 30px;
+
+    &__prev, &__next, &__num {
+      cursor: pointer;
+
+      &._disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+    }
+
+    &__prev {
+      margin-right: 15px;
+    }
+
+    &__next {
+      margin-left: 15px;
+    }
+
+    &__num {
+      margin: 0 5px;
+
+      &._active {
+        font-weight: 500;
+      }
+    }
+  }
+</style>

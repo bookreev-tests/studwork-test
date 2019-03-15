@@ -28,55 +28,29 @@ export default {
 
     &__search {
       margin-bottom: 20px;
-    }
-  }
 
-  .list {
-    //
-
-    &__item {
-      color: deepskyblue;
-      cursor: pointer;
-      transition: 0.2s ease;
-
-      &:not(:last-child) {
-        margin-bottom: 5px;
-      }
-
-      &:hover {
-        color: lighten(deepskyblue, 40%);
-      }
-
-      &:active {
-        color: darken(deepskyblue, 10%);
+      &-input {
+        width: 200px;
+        height: 32px;
+        border: 1px solid alpha(black, 15%);
+        border-radius: 2px;
+        padding: 0 10px;
       }
     }
-  }
 
-  .pag {
-    display: flex;
-    margin-top: 30px;
+    &__back {
+      margin-top: 20px;
 
-    &__prev, &__next, &__num {
-      cursor: pointer;
+      &-link {
+        color: deepskyblue;
 
-      &._disabled {
-        opacity: 0.5;
-        cursor: default;
-      }
-    }
-    &__prev {
-      margin-right: 15px;
-    }
-    &__next {
-      margin-left: 15px;
-    }
+        &:hover {
+          color: lighten(deepskyblue, 40%);
+        }
 
-    &__num {
-      margin: 0 5px;
-
-      &._active {
-        font-weight: 500;
+        &:active {
+          color: darken(deepskyblue, 10%);
+        }
       }
     }
   }

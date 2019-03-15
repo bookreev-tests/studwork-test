@@ -15,6 +15,12 @@ const router = new Router({
       name: 'starships',
       component: () => import('@/components/views/Starships')
     },
+    {
+      path: '/starship/:alias',
+      name: 'starship',
+      component: () => import('@/components/views/Starship'),
+      props: true
+    },
   ]
 })
 
