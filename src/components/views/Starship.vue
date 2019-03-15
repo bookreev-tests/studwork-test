@@ -109,10 +109,10 @@
     </div>
 
     <div class="content__back">
-      <router-link class="content__back-link"
-                   :to="{name: 'starships'}">
+      <a class="content__back-link"
+         @click="$router.go(-1)">
         Back to the starships list
-      </router-link>
+      </a>
     </div>
   </div>
 </template>

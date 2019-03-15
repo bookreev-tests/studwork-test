@@ -43,6 +43,7 @@ export default {
 
       &-link {
         color: deepskyblue;
+        cursor: pointer;
 
         &:hover {
           color: lighten(deepskyblue, 40%);
